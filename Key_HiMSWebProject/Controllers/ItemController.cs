@@ -38,14 +38,24 @@ namespace Key_HiMSWebProject.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> RequestTasks(int userId, int? page, int? pageSize)
+        public async Task<ActionResult> RequestTasks(int userId, int? page, int pageSize = 0)
         {
             ViewBag.SyncType = "Asynchronous";
             List<TaskItem> tasks;
+            double pages = 1;
 
             if (page.HasValue)
             {
-                tasks = await GetTasks(userId, page.Value, pageSize ?? 10);
+                // If a page is provided we are assuming the requester wants paginated results,
+                // so we want to default to 10 results per page.
+                if(pageSize == 0)
+                {
+                    pageSize = 10;
+                }
+
+                tasks = await GetTasks(userId, page.Value, pageSize);
+                pages = Math.Ceiling((double)itemCache.FindAll(it => it.userId == userId).Count() / pageSize);
+
             }
             else
             {
@@ -54,10 +64,14 @@ namespace Key_HiMSWebProject.Controllers
             
             if (tasks == null)
             {
-                return Json(new { Success = false, Message = "No Tasks Found." }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, message = "No Tasks Found." }, JsonRequestBehavior.AllowGet);
             }
 
-            return Json(tasks, JsonRequestBehavior.AllowGet);
+            return Json(new
+            {
+               pages = pages,
+               tasks = tasks
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

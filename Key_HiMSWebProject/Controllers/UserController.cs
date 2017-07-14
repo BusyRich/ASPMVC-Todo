@@ -41,7 +41,7 @@ namespace Key_HiMSWebProject.Controllers
 
             if(user == null)
             {
-                return Json(new { Success = false, Message = "User Not Found." }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, message = "User Not Found." }, JsonRequestBehavior.AllowGet);
             }
 
             return Json(user, JsonRequestBehavior.AllowGet);

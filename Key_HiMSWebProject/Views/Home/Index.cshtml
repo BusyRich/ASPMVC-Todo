@@ -2,3 +2,24 @@
     ViewBag.Title = "Home Page";
 }
 
+<form id="userForm" action="/">
+    <fieldset>
+        <label for="user">User (username):</label>
+        <input name="user" id="user" type="text" />
+    </fieldset>
+    <fieldset>
+        <label for="pageSize">Preferred Page Size:</label>
+        <input name="pageSize" id="pageSize" type="number" />
+    </fieldset>
+    <input type="submit" class="btn" value="Show Tasks"/>
+    <p id="formError" class="text-danger"></p>
+</form>
+<div id="todoList">
+    <h1>Tasks for <span id="nameDisplay"></span><button id="resetForm" class="btn">Change User Preferences</button></h1>
+    <div class="pageNav">
+        <button id="prevPage" class="btn">Prev Page</button>
+        <span id="pageDisplay">#/#</span>
+        <button id="nextPage" class="btn">Next Page</button>
+    </div>
+    <table id="tasks"></table>
+</div>

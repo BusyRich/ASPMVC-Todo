@@ -23,6 +23,10 @@ namespace Key_HiMSWebProject
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            // The scripts specific to the site itself
+            bundles.Add(new ScriptBundle("~/bundles/site").Include(
+                      "~/Scripts/todo.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

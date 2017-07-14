@@ -11,7 +11,7 @@ using System.Web.Script.Serialization;
 
 namespace Key_HiMSWebProject.Controllers
 {
-    // A static controller for talking with the API
+    // A static controller for talking with the external API
     public static class DataRequestController
     {
         private static HttpClient client = new HttpClient();
@@ -39,13 +39,13 @@ namespace Key_HiMSWebProject.Controllers
             return json;
         }
 
-        // Generalized get method that returns a serialized object list from JSON response.
+        // Generalized get method that returns a serialized object list from the JSON response.
         public static async Task<List<dataType>> GetData<dataType>(string path)
         {
             string json = await Request(path);
 
             // Allows the application to "gracefully" fail if there was an error getting data.
-            // It will just return an empty list. 
+            // It will return an empty list. 
             if(json.Length < 1)
             {
                 return new List<dataType>();

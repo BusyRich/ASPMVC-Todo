@@ -15,6 +15,12 @@ namespace Key_HiMSWebProject
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Default Route",
+                url: "",
+                defaults: new { controller = "Home", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Get User by Username",
                 url: "user/{username}",
                 defaults: new { controller = "User", action = "RequestUserByUsername" }
@@ -26,7 +32,7 @@ namespace Key_HiMSWebProject
             routes.MapRoute(
                 name: "Get Tasks for a Specific UserId",
                 url: "user/{userId}/tasks",
-                defaults: new { controller = "Item", action = "RequestTasks" }
+                defaults: new { controller = "Item", action = "RequestTasks"}
             );
         }
     }
