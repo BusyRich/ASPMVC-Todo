@@ -16,6 +16,7 @@ $(function () {
         tasksTable = $('#tasks'),
         pageCountDisplay = $('#pageDisplay');
 
+    // Generalized request function to process responses
     var request = function (path, cb) {
         $.ajax({
             url: path
@@ -50,8 +51,6 @@ $(function () {
         if (pageSize.length > 0) {
             path += '?page=' + currentPage + '&pageSize=' + pageSize
         }
-
-        //console.log(pageSize, path);
 
         request(path, function (err, taskData) {
             if (!err) {

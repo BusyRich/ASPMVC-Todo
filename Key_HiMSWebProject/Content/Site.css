@@ -23,6 +23,7 @@ textarea {
     max-width: 280px;
 }
 
+/* Hides the todo list by default */
 #todoList {
     display: none;
 }
